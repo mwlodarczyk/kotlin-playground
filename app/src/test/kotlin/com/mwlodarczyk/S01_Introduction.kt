@@ -1,5 +1,6 @@
 package com.mwlodarczyk
 
+import org.junit.Assert
 import org.junit.Test
 import java.math.BigDecimal
 
@@ -13,7 +14,9 @@ class S01_Introduction {
     }
 
     //Expression functions
-    fun sum(x: Int, y: Int) = x + y
+    fun sum(x: Int, y: Int): Int {
+        return x + y
+    }
 
     //Extension functions
     fun BigDecimal.percent(percentage: Int) = this * BigDecimal(percentage / 100)
@@ -27,13 +30,13 @@ class S01_Introduction {
     }
 
     @Test
-    fun basicTypes() {
+    fun shouldTestBasicTypes(): Unit {
 
         val tickets = Money(BigDecimal(100), "$")
         val popcorn = Money(BigDecimal(500), "EUR")
 
         //There is also !== operator
-        if (tickets != popcorn) {
+        if (tickets !== popcorn) {
             println("They are different!")
         }
 
@@ -42,6 +45,9 @@ class S01_Introduction {
 
         //Great to pass parameters in any order we want
         sendPayment(message = "Good luck", money = tickets)
+
+        val s = sum(1, 3)
+        Assert.assertEquals(s, 4)
     }
 
 }
